@@ -16,7 +16,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-# Inicializar driver
 chrome_driver_path = 'drivers/chromedriver'
 gecko_driver_path = 'drivers/geckodriver'
 url = 'https://laboratorio.qaminds.com/'
@@ -26,9 +25,11 @@ driver.maximize_window()
 
 # Abrir pagina
 driver.get(url)
+time.sleep(3)
 
-word = "iphone"
+
 #buscador 
+word = "iphone"
 time.sleep(5)
 opc_tablet : WebElement = driver.find_element(By.LINK_TEXT,'Tablets')
 assert opc_tablet.is_displayed(), "no visible"

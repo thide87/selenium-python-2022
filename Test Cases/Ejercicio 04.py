@@ -1,3 +1,10 @@
+#Ejercicio 4:
+#Ir a la página https://laboratorio.qaminds.com/
+#Escribir un script que:
+#Seleccione la opción Windows que pertenece al menú Laptops & Notebooks
+#Verifique que se muestra mensaje indicativo que no existen ítems.
+#Verifique que se muestra botón Continue y que si se le hace click, se regresa a la pagina de inicio
+
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

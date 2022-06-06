@@ -5,55 +5,44 @@
 #Dado un login invalido se muestre un cartel de error con el mensaje:
 #“Warning: No match for E-Mail Address and/or Password.”
 
-
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
-# Init Browsers
 from selenium.webdriver.remote.webelement import WebElement
 
-chrome_driver_path = 'drivers/chromedriver'
-gecko_driver_path = 'drivers/geckodriver'
-url = 'https://qamindslab.com'
-service = Service(gecko_driver_path)
+#Inicializa driver
+chrome_driver_path='./drivers/chromedriver'
+gecko_driver_path='./drivers/geckodriver'
+url='https://laboratorio.qaminds.com/'
+service =Service(gecko_driver_path)
 driver = webdriver.Firefox(service=service)
+#Abrir Pag
+driver.get(url)
+time.sleep(3)
+#Login Invalido
+mi_cuenta : WebElement =driver.find_element(By.LINK_TEXT,'My Account')
+assert mi_cuenta.is_displayed(), 'No se encontro'
+mi_cuenta.click()
 
-# Open Web Page
-driver.get("https://laboratorio.qaminds.com/")
-time.sleep(5)
+login : WebElement =driver.find_element(By.LINK_TEXT,'Login')
+assert login.is_displayed(), 'No se login para iniciar sesion'
+login.click()
+time.sleep(4)
 
-# Test Logic
-time.sleep(5)
+email:WebElement= driver.find_element(By.ID,'input-email')
+assert email.is_displayed(), 'No se encontro campo de email'
+email.send_keys('correo@mail.com')
 
-my_account: WebElement = driver.find_element(By.LINK_TEXT, "My Account")#or con xpath other exaple for looging the other acount is: //footer//a[normalize-space(.)='My Account']
-assert my_account.is_displayed(), "my account is not visible"
-my_account.click()
+password:WebElement= driver.find_element(By.ID,'input-password')
+assert password.is_displayed(), 'No se encontro campo de password'
+password.send_keys('123456789')
 
-opc_login: WebElement = driver.find_element(By.LINK_TEXT, "Login")
-assert opc_login.is_displayed(), "login is not visible"
-opc_login.click()
+button_login :WebElement=driver.find_element(By.XPATH,'//*[@value="Login"]') #cambiar xpath
+assert button_login.is_displayed(), 'No encontro boton'
+button_login.click()
+#Warring 
+warning:WebElement=driver.find_element(By.XPATH,'//*[contains(@class,"fa-exclamation-circle")]')#cambiar xpath
+assert warning.is_displayed(),'No mostro warning'
 
-correo : WebElement = driver.find_element(By.NAME, "email")
-assert correo.is_displayed(), "correo is not visible"
-correo.clear()
-correo.send_keys("casa")
-
-password : WebElement = driver.find_element(By.ID, "input-password")
-assert password.is_displayed(), "password is not visible"
-password.clear()
-password.send_keys("casas")
-
-
-
-login_btn = WebElement = driver.find_element(By.XPATH, '//input[@value="Login"]')
-assert login_btn.is_displayed(), "login is not visible"
-login_btn.click()
-
-clase_error : WebElement = driver.find_element(By.XPATH,"//*[contains(@class,'fa-exclamation-circle')]")#too find by.CSS ej: .fa-exclamation-circle
-assert clase_error.is_displayed(),"no hay error"
-assert clase_error.text == " Warning: No match for E-Mail Address and/or Password.", "no coincide el texto de error"
-
-
-# Close browser
-#driver.quit()
+driver.quit()

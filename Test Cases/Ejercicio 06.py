@@ -1,3 +1,9 @@
+#Ejercicio 6:
+#Ir a la página https://demoqa.com/select-menu
+#Escribir un script que:
+#seleccione de la primera lista Standard Multi Select las opción “Volvo” y “Audi”
+#verifique que la opción ha sido seleccionada.
+
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service

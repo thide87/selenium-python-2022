@@ -20,6 +20,7 @@ driver.maximize_window()
 
 # Abrir pagina
 driver.get(url)
+time.sleep(3)
 
 word = "iphone"
 #buscador 

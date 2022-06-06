@@ -1,3 +1,9 @@
+#Ejercicio 5:
+#Ir a la página https://demoqa.com/select-menu
+#Escribir un script que:
+#seleccione de la primera lista Old Style Select Menu la opción “green”
+#verifique que la opción ha sido seleccionada.
+
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
